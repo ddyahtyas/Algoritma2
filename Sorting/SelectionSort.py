@@ -1,15 +1,22 @@
-#SELECTION_SORT
-data = [5,3,1,2] # mendeklarasikan array data
-max = len(data)- 1 # variabel
-for i in range(max): #menyataka jumlah proses(iterasi) sebanyak 3 kali ==> 0,1,2
-    print (i)
+'''SELECTION_SORT
+Prinsip dari algoritma selection sort adalah memilih elemen dengan nilai paling rendah dan menukar elemen tersebut dengan elemen ke-i. Nilai dari i dimulai dari 1 ke n, dimana n adalah jumlah total elemen dikurangi 1.
+Langkahnya seperti di bawah ini :
+1. Pengecekan dimulai dari data ke-1 sampai dengan data ke n.
+2. Tentukan bilangan dengan index terkecil dari data bilangan tersebut.
+3. Tukar bilangan dengan index terkecil tersebut dengan bilangan pertama (i=1) dari data bilangan tersebut.
+4. Lakukan langkah 2 dan 3 untuk bilangan berikutnya (i=i+1) sampai di dapatkan data yang sesuai.
+
+jumlah proses = n-1 '''
+
+data = [5,3,1,2]
+max = len(data)-1
+for i in range(max):
     x = i
-    print ('------')
-    for j in range ((x+1), max+1,+1) : #mengecek data untuk setiap iterasi
+    for j in range(i+1,max+1,1):
         print(j)
-        if data [x] > data[j]:
+        if data[j] < data[x]:
             x = j
-    temp = data[x]
-    data[x] =data[i]
-    data[i] = temp
-    print (data)
+    temp = data[i]
+    data[i] = data[x]
+    data[x] = temp
+print(data)
