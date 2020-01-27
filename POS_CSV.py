@@ -8,11 +8,10 @@ import os
 
 while True:
     menu = ['1. Data Barang','2. Pencarian Barang', '3. Penjualan', '4. Stok']
-    submenu1 = ['1. List Barang', '2. Input Barang', '3. Buble Sorting ', '4. Insertion Sorting', '5. Selection Sort',
+    submenu1 = ['1. List Barang', '2. Input Barang', '3. Buble Sorting', '4. Insertion Sorting', '5. Selection Sort',
                 '6. Kembali']
     DATABASE_FILE = 'database.csv'
     database = []
-
     # Load data dari CSV
     with open(DATABASE_FILE) as db_file:
         csv_reader = csv.reader(db_file, delimiter=';')
@@ -52,12 +51,10 @@ while True:
 
             #buble sort
             elif aksiMenu1 == '3':
-                print(database)
                 for i in range(len(database)):
                     database[i][2] = int(database[i][2])
-                #data = database.copy()
-                b = len(database)
-                for x in range(b - 1, 0, -1):
+                max = len(database)-1
+                for x in range(max, 0, -1):
                     for y in range(x):
                         if database[y][2] > database[y + 1][2]:
                             temp = database[y + 1]
@@ -69,35 +66,32 @@ while True:
 
             #inserton sort
             elif aksiMenu1 == '4':
-                print(database)
                 for i in range(len(database)):
                     database[i][2] = int(database[i][2])
-                #data = database.copy()
-                b = len(database)
-                for x in range(b - 1, 0, -1):
-                    for y in range(x):
-                        if database[y][2] > database[y + 1][2]:
-                            temp = database[y + 1]
-                            database[y + 1] = database[y]
+                max = len(database)
+                for x in range(1,max,1):
+                    for y in range(x,0,-1):
+                        if database[y][2] < database[y - 1][2]:
+                            temp = database[y - 1]
+                            database[y - 1] = database[y]
                             database[y] = temp
                 print("%2s \t %10s \t %10s" % ("ID", "NAMA", "HARGA"))
                 for row in database:
                     print("%2s \t %10s \t %10s" % (row[0], row[1], row[2]))
 
-            #selection sort
+            # selection sort
             elif aksiMenu1 == '5':
                 for i in range(len(database)):
                     database[i][2] = int(database[i][2])
                 max = len(database) - 1
                 for i in range(max):
                     x = i
-                    print('Proses ke-', (x + 1))
-                    for j in range((x + 1), max + 1, +1):
+                    for j in range(i + 1, max + 1, 1):
                         if database[x][2] > database[j][2]:
                             x = j
-                    temp = database[x]
-                    database[x] = database[i]
-                    database[i] = temp
+                    temp = database[i]
+                    database[i] = database[x]
+                    database[x] = temp
                 print("%2s \t %10s \t %10s" % ("ID", "NAMA", "HARGA"))
                 for row in database:
                     print("%2s \t %10s \t %10s" % (row[0], row[1], row[2]))
